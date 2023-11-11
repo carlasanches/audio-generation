@@ -2,7 +2,8 @@ import numpy as numpy
 import matplotlib
 import matplotlib.pyplot as plt
 import IPython
-import IPython.display as ipd 
+import IPython.display as ipd
+import tensorflow as tf
 
 from keras.optimizers import Adam
 from keras.callbacks import (EarlyStopping, LearningRateScheduler, ModelCheckpoint, TensorBoard, ReduceLROnPlateau)
@@ -21,7 +22,7 @@ class AudioGAN:
         self.autoencoder = autoEncoder(self.enc, self.gen)  
         
         # Compile models
-        self.opt = Adam(lr = 0.0002, beta_1 = 0.9)
+        self.opt = tf.keras.optimizers.legacy.Adam(learning_rate = 0.0002, beta_1 = 0.9)
         self.gen.compile(loss = 'binary_crossentropy', optimizer = self.opt, metrics = ['accuracy'])
         self.dis.compile(loss = 'binary_crossentropy', optimizer = self.opt, metrics = ['accuracy'])
         self.autoencoder.compile(loss = 'mse',         optimizer = self.opt, metrics = ['accuracy'])

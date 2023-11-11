@@ -14,7 +14,7 @@ ENCODE_SIZE = NOISE_DIM
 DENSE_SIZE = 2100
 
 # Paths
-DATASET_PATH      = "../../Datasets/freesound-audio-tagging/"
+DATASET_PATH = "/content/audio-generation/dataset/"
 AUTO_ENCODER_PATH = "./WavFiles/Autoencoder/"
 PICTURE_PATH      = "./Pictures/"
 GAN_PATH          = "./WavFiles/GAN/"
@@ -22,7 +22,7 @@ GAN_PATH          = "./WavFiles/GAN/"
 #Label
 LABEL = "Violin_or_fiddle"
 
-# Load 
+# Load
 def load_train_data(input_length=AUDIO_SHAPE, label = LABEL):
     train = pd.read_csv(DATASET_PATH + "train.csv")
     if label != None:
@@ -54,7 +54,7 @@ def load_train_data(input_length=AUDIO_SHAPE, label = LABEL):
     print("Data Loaded...")
     return X
 
-# Stardize Data 
+# Stardize Data
 def normalization(X):
     mean = X.mean(keepdims=True)
     std = X.std(keepdims=True)
